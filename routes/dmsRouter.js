@@ -34,7 +34,7 @@ router.post('/startReplicationTask', validateIntegrationName, (req, res) => {
         "integration_name": req.body.integration_name,
         "api_name": req.body.api_name,
         "statusCode": req.body.statusCode,
-        "message": "Replication task started successfully",
+        "message": req.body.statusCode != "200" ? "Failed to start Replication Task" : "Replication task started successfully",
         "data" : []
       })
 });
@@ -58,7 +58,7 @@ router.post('/stopReplicationTask', validateIntegrationName, (req, res) => {
         "integration_name": req.body.integration_name,
         "api_name": req.body.api_name,
         "statusCode": req.body.statusCode,
-        "message": "Replication task stopped successfully",
+        "message": req.body.statusCode != "200" ? "Failed to stop Replication Task" :  "Replication task stopped successfully",
         "data" : []
       })
 
@@ -71,8 +71,8 @@ router.post('/listReplicationTasks', validateIntegrationName, (req, res) => {
         "integration_name": req.body.integration_name,
         "api_name": req.body.api_name,
         "statusCode": req.body.statusCode,
-        "message" : "Replication tasks listed successfully",
-        "data": [
+        "message" : req.body.statusCode != "200" ? "Failed to list Replication Task" :  "Replication tasks listed successfully",
+        "data":  req.body.statusCode != "200" ? [] : [
             {
                 // Replication task details here
                 "replicationTaskArn": "arn:1234",

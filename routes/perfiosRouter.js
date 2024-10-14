@@ -22,9 +22,9 @@ router.post('/getAccountDetails', validateIntegrationName, (req, res) => {
         "integration_name": req.body.integration_name,
         "api_name": req.body.api_name,
         "statusCode": req.body.statusCode,
-        "message": "Get Account Details fetched successfully",
+        "message": req.body.statusCode != "200" ? "Failed to fetch accounts" : "Get Account Details fetched successfully",
         "data": {
-          "accounts": [
+          "accounts": req.body.statusCode != "200" ? [] : [
             {
               "accountNumber": "123456789",
               "bankName": "Bank A",
@@ -49,9 +49,9 @@ router.post('/getTransactionHistory', validateIntegrationName, (req, res) => {
         "integration_name": req.body.integration_name,
         "api_name": req.body.api_name,
         "statusCode": req.body.statusCode,
-        "message": "Get Transaction History fetched successfully",
+        "message": req.body.statusCode != "200" ? "Failed to fetch transaction ids" : "Get Transaction History fetched successfully",
         "data": {
-          "transactions": [
+          "transactions": req.body.statusCode != "200" ? [] : [
             {
               "date": "2024-09-01",
               "description": "Deposit",
@@ -77,8 +77,8 @@ router.post('/getCreditScore', validateIntegrationName, (req, res) => {
         "integration_name": req.body.integration_name,
         "api_name": req.body.api_name,
         "statusCode": req.body.statusCode,
-        "message": "Get Credit Score fetched successfully",
-        "data": {
+        "message": req.body.statusCode != "200" ? "Failed to fetch credit score" : "Get Credit Score fetched successfully",
+        "data": req.body.statusCode != "200" ? "[]" : {
           "creditScore": 750,
           "factorsAffectingScore": [
             {

@@ -41,23 +41,23 @@ app.get('/fetch-cloudwatch-logs', (req, res) => {
 })
 
 app.post('/submit-response', (req, res) => {
-    console.log('submit-response API called...')
+    console.log('salesforce-submit-response API called...')
     if(req.body.status === 'success')
         res.json({
-            "api_name": "submit-response",
+            "api_name": "salesforce-submit-response",
             "message": "Request executed successfully",
             "original_event_data": req.body
         })
     
     else if(req.body.status === 'fail')
         res.json({
-            "api_name": "submit-response",
+            "api_name": "salesforce-submit-response",
             "message": "Request failed",
             "original_event_data": req.body
         })
 
     else res.json({
-        "api_name": "submit-response",
+        "api_name": "salesforce-submit-response",
         "message": "Unknown request",
         "original_event_data": req.body
     })
@@ -74,7 +74,7 @@ app.post('/hunter', (req, res) => {
                 "integration_name" : INTEGRATION_NAME.HUNTER,
                 "api_name" : "hunter",
                 "statusCode" : req.body.statusCode,
-                "message" : "OK",
+                "message" : req.body.statusCode != 200 ? "Fail" : "OK",
                 "data" : []
             })
         }
@@ -106,7 +106,7 @@ app.post('/posidex', (req, res) => {
                 "integration_name" : INTEGRATION_NAME.POSIDEX,
                 "api_name" : "posidex",
                 "statusCode" : req.body.statusCode,
-                "message" : "OK",
+                "message" : req.body.statusCode != 200 ? "Fail" : "OK",
                 "data" : []
             })
         }
@@ -138,7 +138,7 @@ app.post('/cibil', (req, res) => {
                 "integration_name" : INTEGRATION_NAME.CIBIL,
                 "api_name" : "cibil",
                 "statusCode" : req.body.statusCode,
-                "message" : "OK",
+                "message" : req.body.statusCode != 200 ? "Fail" : "OK",
                 "data" : []
             })
         }
@@ -170,7 +170,7 @@ app.post('/no-integration-name', (req, res) => {
                 "integration_name" : INTEGRATION_NAME.NO_INTEGRATION_NAME,
                 "api_name" : "no-integration-name",
                 "statusCode" : req.body.statusCode,
-                "message" : "OK",
+                "message" : req.body.statusCode != 200 ? "Fail" : "OK",
                 "data" : []
             })
         }
