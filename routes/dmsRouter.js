@@ -15,6 +15,9 @@ const validateIntegrationName = (req, res, next) => {
     next();
 };
 
+/**
+ * @description Use start-replication for initial migration, reload-target or resume-processing for updates.
+*/
 router.post('/startReplicationTask', validateIntegrationName, (req, res) => {
     console.log("API invoked: /dms/startReplicationTask")
 
@@ -39,6 +42,9 @@ router.post('/startReplicationTask', validateIntegrationName, (req, res) => {
       })
 });
 
+/**
+ * @description The ARN of the replication task to be stopped.
+*/
 router.post('/stopReplicationTask', validateIntegrationName, (req, res) => {
     console.log("API invoked: /dms/stopReplicationTask")
 
@@ -64,6 +70,11 @@ router.post('/stopReplicationTask', validateIntegrationName, (req, res) => {
 
 });
 
+/**
+ *
+ * @description Lists all the replication tasks 
+ * 
+*/
 router.post('/listReplicationTasks', validateIntegrationName, (req, res) => {
     console.log("API invoked: /dms/listReplicationTasks")
     // sample response

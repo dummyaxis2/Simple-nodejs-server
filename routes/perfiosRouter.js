@@ -15,6 +15,9 @@ const validateIntegrationName = (req, res, next) => {
     next();
 };
 
+/**
+ * @description Fetch account details
+*/
 router.post('/getAccountDetails', validateIntegrationName, (req, res) => {
     console.log("API invoked: /perfios/getAccountDetails")
     // sample response
@@ -42,6 +45,9 @@ router.post('/getAccountDetails', validateIntegrationName, (req, res) => {
       })
 });
 
+/**
+ * @description Fetch account transaction history
+*/
 router.post('/getTransactionHistory', validateIntegrationName, (req, res) => {
     console.log("API invoked: /perfios/getTransactionHistory")
     // sample response
@@ -70,6 +76,9 @@ router.post('/getTransactionHistory', validateIntegrationName, (req, res) => {
 
 });
 
+/**
+ * @description Fetch credit score
+*/
 router.post('/getCreditScore', validateIntegrationName, (req, res) => {
     console.log("API invoked: /perfios/getCreditScore")
     // sample response
